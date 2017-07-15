@@ -50,7 +50,6 @@ def hello(pageN):
         pageNum = (getPostsRows()[0][0])/6 + 1
     else:
         pageNum = (getPostsRows()[0][0])/6
-
     if int(pageN) > int(pageNum) or int(pageN) <= 0:
         pageN = 1
     posts = sreachall((int(pageN) * 6) - 1)
@@ -60,13 +59,14 @@ def hello(pageN):
     alllist = []
     # 0:ID , 1:time ,2:title 3:body ,4:author
     for post in posts:
-        alllist.append({'author': {'name': post[4]}, 'body': post[3], 'title': post[2], 'time': post[1].strftime("%a %b %d %Y")})
+        alllist.append({'author': {'name': post[4]}, 'body': post[3],\
+                       'title': post[2], 'time': post[1].strftime("%a %b %d %Y")})
 
     for tit in titAll:
         listTit.append({'title': tit[0]})
 
-    print(listTit)
-    return render_template('index.html', posts=alllist, pageN=pageN, int=int, pageNum=pageNum, listTit=listTit)
+    return render_template('index.html', posts=alllist, pageN=pageN,\
+                           int=int, pageNum=pageNum, listTit=listTit)
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
@@ -88,9 +88,7 @@ def readPost(title):
 
     post = sreachPost(title)
     postList = []
-    print(post[0])
     postList.append({'title': post[0][2], 'body': post[0][3]})
-    print(postList)
     return render_template('post.html', post=postList)
 
 @app.route('/bs')
@@ -132,7 +130,6 @@ def sreachPost(title):
 
         with connect.cursor() as cursor:
             sql = "SELECT * FROM posts WHERE title = '{}'".format(title)
-            print(sql)
             cursor.execute(sql)
             result = cursor.fetchall()
             connect.commit()
@@ -159,7 +156,8 @@ def insertPost(time, post, author, title):
     try:
         connect.open
         with connect.cursor() as cursor:
-            sql = "INSERT INTO posts (author,createtime,body,title) VALUES (\'{}\',\'{}\',\'{}\',\'{}\')".format(author, time, post, title)
+            sql = "INSERT INTO posts (author,createtime,body,title) VALUES\
+                  (\'{}\',\'{}\',\'{}\',\'{}\')".format(author, time, post, title)
             cursor.execute(sql)
             number = cursor.rowcount
             connect.commit()
@@ -192,7 +190,6 @@ def setpass():
 
 def passw():
     for i in sreach():
-        print('！！！')
         if check_password_hash(i[3], '123'):
             print('正确！！！')
         break
