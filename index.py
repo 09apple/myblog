@@ -7,7 +7,7 @@ from flask_bootstrap import Bootstrap
 import pymysql.cursors
 from flask_wtf import Form
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask.ext.pagedown import PageDown
+from flask_pagedown import PageDown
 from wtforms import TextAreaField, SubmitField, StringField
 from wtforms.validators import DataRequired
 
