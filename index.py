@@ -161,7 +161,6 @@ def insertPost(time, post, author, title):
             cursor.execute(sql)
             number = cursor.rowcount
             connect.commit()
-
             return number
 
     finally:
