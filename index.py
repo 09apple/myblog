@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, redirect
 from flask import request
-from flask.ext.bootstrap import Bootstrap
+from flask_bootstrap import Bootstrap
 #from flask_sqlalchemy import SQLAlchemy
 import pymysql.cursors
 from flask.ext.wtf import Form
