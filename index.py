@@ -10,7 +10,13 @@ from wtforms import TextAreaField, SubmitField, StringField
 from wtforms.validators import DataRequired
 
 import time
-app = Flask(__name__)
+
+def create_app():
+    app = Flask(__name__)
+    return app
+
+app = create_app()
+
 
 bootstrap = Bootstrap(app)
 pagedown = PageDown()
