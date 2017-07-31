@@ -33,7 +33,6 @@ connect = pymysql.connect(
     user='root',
     passwd='root',
     db='bolg',
-    charset='utf8'
 )
 
 
