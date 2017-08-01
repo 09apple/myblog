@@ -11,7 +11,7 @@ from flask_pagedown import PageDown
 from wtforms import TextAreaField, SubmitField, StringField
 from wtforms.validators import DataRequired
 
-import time
+import datetime
 
 def create_app():
     app = Flask(__name__)
@@ -33,6 +33,7 @@ connect = pymysql.connect(
     user='root',
     passwd='09apple',
     db='blog',
+    charset='utf8'
 )
 
 
@@ -59,27 +60,28 @@ def hello(pageN):
         pageNum = (getPostsRows()[0][0])/6
     if int(pageN) > int(pageNum) or int(pageN) <= 0:
         pageN = 1
-    posts = sreachall((int(pageN) * 6) - 1)
+    posts = sreachall(((int(pageN)-1) * 6))
     titAll = sreachTit()
 
     listTit = []
     alllist = []
     # 0:ID , 1:time ,2:title 3:body ,4:author
     for post in posts:
-        alllist.append({'author': {'name': post[4]}, 'body': post[3],\
-                       'title': post[2], 'time': post[1].strftime("%a %b %d %Y")})
-
+        alllist.append({'author': {'name': post[4]}, 'body': post[3], \
+                        'title': post[2], 'time': post[1].strftime("%a %b %d %Y")})
+    print(posts)
     for tit in titAll:
         listTit.append({'title': tit[0]})
 
-    return render_template('index.html', posts=alllist, pageN=pageN,\
+    return render_template('index.html', posts=alllist, pageN=pageN, \
                            int=int, pageNum=pageNum, listTit=listTit)
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     form = PostForm()
     if form.validate_on_submit():
-        createtime = '2017-7-5'
+        createtime = (datetime.datetime.now()).strftime("%Y-%m-%d %H:%M:%S")
+
         body = form.body.data
         title = form.title.data
 
@@ -89,6 +91,16 @@ def add():
             return redirect('/hello/1')
     else:
         return render_template('page.html', form=form)
+
+@app.route('/getPwd',methods=['GET'])
+def addForPwd():
+    form = PostForm()
+    if form.validate_on_submit():
+        body = form.body.data
+        title = form.title.data
+    else:
+        return render_template('page.html', form=form)
+
 
 @app.route('/post/<title>')
 def readPost(title):
@@ -126,6 +138,7 @@ def sreachall(num):
             cursor.execute(sql)
             result = cursor.fetchall()
             connect.commit()
+            print(sql)
             return result
 
     finally:
