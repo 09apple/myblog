@@ -28,11 +28,11 @@ app.config.from_object('config')
 #import models
 
 connect = pymysql.connect(
-    host='127.0.0.1',
+    host='localhost',
     port=3306,
     user='root',
-    passwd='root',
-    db='bolg',
+    passwd='09apple',
+    db='blog',
 )
 
 
