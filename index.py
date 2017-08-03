@@ -31,8 +31,8 @@ connect = pymysql.connect(
     host='localhost',
     port=3306,
     user='root',
-    passwd='09apple',
-    db='blog',
+    passwd='root',
+    db='bolg',
     charset='utf8'
 )
 
@@ -69,7 +69,6 @@ def hello(pageN):
     for post in posts:
         alllist.append({'author': {'name': post[4]}, 'body': post[3], \
                         'title': post[2], 'time': post[1].strftime("%a %b %d %Y")})
-    print(posts)
     for tit in titAll:
         listTit.append({'title': tit[0]})
 
@@ -138,7 +137,6 @@ def sreachall(num):
             cursor.execute(sql)
             result = cursor.fetchall()
             connect.commit()
-            print(sql)
             return result
 
     finally:
