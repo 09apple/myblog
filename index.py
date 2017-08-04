@@ -40,7 +40,7 @@ connect = pymysql.connect(
 @app.route('/')
 def hello_world():
     user_agent = request.headers.get('User-Agent')
-    return '<p>Your browser is %s</p>' % user_agent
+    return redirect('/hello/1')
 
 @app.route('/page')
 def addpage():
