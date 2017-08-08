@@ -31,8 +31,8 @@ connect = pymysql.connect(
     host='localhost',
     port=3306,
     user='root',
-    passwd='09apple',
-    db='blog',
+    passwd='root',
+    db='bolg',
     charset='utf8'
 )
 
@@ -68,7 +68,7 @@ def hello(pageN):
     # 0:ID , 1:time ,2:title 3:body ,4:author
     for post in posts:
         alllist.append({'author': {'name': post[4]}, 'body': post[3], \
-                        'title': post[2], 'time': post[1].strftime("%a %b %d %Y")})
+                        'title': post[2], 'time': post[1].strftime("%Y-%m-%d")})
     for tit in titAll:
         listTit.append({'title': tit[0]})
 

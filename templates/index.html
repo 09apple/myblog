@@ -12,15 +12,6 @@
         }
         .abs{
             padding: 0px 20px 20px 20px;
-            text-align: left;
-        }
-        .my{
-            padding-bottom: 50px;
-            text-align: left;
-        }
-        .allpost{
-            padding-bottom: 50px;
-            text-align: left;
         }
         .box{
             width:560px;height:144px;line-height:30px;overflow:hidden;display:block;
@@ -34,85 +25,52 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <a href="#" class="navbar-brand"> 何  涛 </a>
-        </div>
+<div class="header-container" style="background: linear-gradient(rgba(0, 0, 0, 2), rgba(0, 0, 0, 2)), url('https://foofish.net/images/peitu/jacob-repko-64098.jpg'); background-position: center; background-size: cover;">
 
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active" href="/hello/1"><a>Home</a></li>
-            </ul>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand"> 何  涛 </a>
+            </div>
+
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active" href="/hello/1"><a>Home</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+
+</div>
 
 <div class="container">
 
-    <div class="abs">
-        <div class="row">
-            <div class="col-sm-8 blog-main" style="padding: 20px 20px 20px 20px;border-style: none ;border-right: outset ; border-width: 0.3px;background-color:#DCDCDC">
-                <div class="archive-container" style=" ">
-                    {% for post in posts %}
-                        <div>
-                            <h3><p class="blog-post-title"><a href="/post/{{ post.title }}">{{ post.title }} </a></p></h3>
-
-                            <p class="blog-post-meta">
-                                {{ post.time }} By <a href="#"> {{ post.author.name }} </a>
-                            </p>
-                            <a href="/post/{{ post.title }}">
-
-                                    <p class="box">
-
-                                    {{ post.body }}
-
-                                    </p>
-
-                            </a>
-
-                        </div>
-                        <hr>
-                    {% endfor %}
-
-                    <nav>
-                        <ul class="pager">
-                            <li>
-                                <a {% if int(pageN) != 1 %} href="/hello/{{ int(pageN) - 1 }}"
-                                {% else %} href="#" {% endif %}>Previous</a>
-
-                            </li>
-                            <li>
-                                <a {% if int(pageN) != int(pageNum) %} href="/hello/{{ int(pageN) + 1 }}"
-                                {% else %} href="#" {% endif %}>Next</a>
-
-                            </li>
-                        </ul>
-                    </nav>
+    <div  style="padding: 20px 20px 20px 20px;border-style: none ;text-align: center">
+    <h3 id="content" style="text-align: left ">最近更新:</h3>
+    <hr>
+        <div class="archive-container" style="text-align: center ">
+            {% for post in posts %}
+                <div>
+                    <h4><p class="blog-post-title">{{ post.time }} &nbsp;&nbsp;&nbsp;&nbsp; <a href="/post/{{ post.title }}">{{ post.title }} </a></p></h4>
 
                 </div>
-            </div>
+            {% endfor %}
 
-            <div class="col-sm-3 col-sm-offset-1 blog-sideber">
-                <div class="sidebar-module sidebar-module-inset">
-                    <div class="my">
-                        <h4>About Author</h4>
-                        <h6> 何  涛 </h6>
-                        <h6>09appleht@gmail.com</h6>
-                        <a href="https://github.com/09apple" target="view_window">github</a>
-                    </div>
-                </div>
-                <div class="sidebar-module">
-                    <div class="allpost">
-                        <h4>最近更新</h4>
-                        <ol class="list-unstyled">
-                            {% for tit in listTit %}
-                                <li><a href="/post/{{ tit.title }}">{{ tit.title }}</a></li>
-                            {% endfor %}
-                        </ol>
-                    </div>
-                </div>
-            </div>
+            <nav>
+                <ul class="pager">
+                    <li>
+                        <a {% if int(pageN) != 1 %} href="/hello/{{ int(pageN) - 1 }}"
+                        {% else %} href="#" {% endif %}>Previous</a>
+
+                    </li>
+                    <li>
+                        <a {% if int(pageN) != int(pageNum) %} href="/hello/{{ int(pageN) + 1 }}"
+                        {% else %} href="#" {% endif %}>Next</a>
+
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 
