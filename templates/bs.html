@@ -2,16 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>后台管理</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>后台</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='bootstrap.min.css')}} " >
+
+    <style>
+        body{
+            padding-top: 50px;
+
+
+        }
+        button{
+            padding-top: 50px;
+        }
+    </style>
 </head>
 <body>
-    {% if name == 'ht' %}
-    <p>ht</p>
-    {% else %}
-    <p>no ht</p>
-    {% endif %}
+{% block content %}
+    <div class="container">
+        <div>
 
-<a href="/hello"> hello</a>
+            <form action="/getpwd" method="post" name="pwd">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    <label for="exa">密码:</label>
+                    {{ form.pwd(size=120, class="form-control") }}
+                </div>
+                <button type="submit" class="btn btn-danger" id="submit">提交</button>
+            </form>
 
+        </div>
+
+    </div>
+
+{% endblock %}
 </body>
 </html>

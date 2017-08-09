@@ -7,14 +7,10 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='bootstrap.min.css')}}" >
     <style>
         body{
-            padding-top: 50px;
             background-color:#DCDCDC
         }
-        .abs{
-            padding: 0px 20px 20px 20px;
-        }
-        .box{
-            width:560px;height:144px;line-height:30px;overflow:hidden;display:block;
+        div.header-container{
+            padding-top: 0px;
         }
         pre{
             white-space:pre-wrap;
@@ -22,13 +18,28 @@
             white-space:-o-pre-wrap;
             word-wrap:break-word;
         }
+        dt{
+            color: #808080;
+        }
     </style>
 </head>
 <body>
-<div class="header-container" style="background: linear-gradient(rgba(0, 0, 0, 2), rgba(0, 0, 0, 2)), url('https://foofish.net/images/peitu/jacob-repko-64098.jpg'); background-position: center; background-size: cover;">
+<div class="header-container" style="background:  url('https://foofish.net/images/peitu/jacob-repko-64098.jpg') no-repeat;width: 100%;height: 360px; background-position: center; background-size: cover;">
+    <div class="container">
+        <div class="header-nav" >
+            <div class="header-logo" style="padding-top: 30px;">
+                <a style="color: white" class="pull-left" href="http://120heshi.com/">H S</a>
+            </div>
+            <div class="nav pull-right" style="padding-top: 20px; padding-left: 20px;">
+                <a  style="padding-left: 20px; color: white" href="http://120heshi.com/">首 页</a>
+                <a  style="padding-left: 20px; color: white" href="http://120heshi.com/about">关 于</a>
 
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            </div>
+        </div>
+
+    </div>
+    {#<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <a href="#" class="navbar-brand"> 何  涛 </a>
@@ -40,7 +51,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>#}
 
 </div>
 
@@ -51,26 +62,31 @@
     <hr>
         <div class="archive-container" style="text-align: center ">
             {% for post in posts %}
-                <div>
-                    <h4><p class="blog-post-title">{{ post.time }} &nbsp;&nbsp;&nbsp;&nbsp; <a href="/post/{{ post.title }}">{{ post.title }} </a></p></h4>
-
-                </div>
+                <dl class="dl-horizontal">
+                    <dt >{{ post.time }} &nbsp;&nbsp;&nbsp;&nbsp;</dt>
+                    <dd style="text-align: left"><a href="/post/{{ post.title }}">{{ post.title }}</a></dd>
+                </dl>
             {% endfor %}
 
-            <nav>
+            <div>
                 <ul class="pager">
                     <li>
-                        <a {% if int(pageN) != 1 %} href="/hello/{{ int(pageN) - 1 }}"
-                        {% else %} href="#" {% endif %}>Previous</a>
-
+                        {% if int(pageN) != 1 %}
+                            <a href="/hello/{{ int(pageN) - 1 }}"> Previous </a>
+                        {% else %}
+                           <p hidden> <a href="#"> Previous </a></p>
+                        {% endif %}
                     </li>
                     <li>
-                        <a {% if int(pageN) != int(pageNum) %} href="/hello/{{ int(pageN) + 1 }}"
-                        {% else %} href="#" {% endif %}>Next</a>
+                        {% if int(pageN) != int(pageNum) %}
+                            <a href="/hello/{{ int(pageN) + 1 }}"> Next </a>
+                        {% else %}
+                            <p hidden><a hidden href="#"> Next </a></p>
+                        {% endif %}
 
                     </li>
                 </ul>
-            </nav>
+            </div>
         </div>
     </div>
 

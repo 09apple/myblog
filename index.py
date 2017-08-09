@@ -8,7 +8,7 @@ import pymysql.cursors
 from flask_wtf import Form
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_pagedown import PageDown
-from wtforms import TextAreaField, SubmitField, StringField
+from wtforms import TextAreaField, SubmitField, StringField, PasswordField
 from wtforms.validators import DataRequired
 
 import datetime
@@ -89,16 +89,19 @@ def add():
         if int(number) > 0:
             return redirect('/hello/1')
     else:
-        return render_template('page.html', form=form)
+        return render_template('bs.html', form=form)
 
-@app.route('/getPwd',methods=['GET'])
+@app.route('/getpwd',methods=['GET', 'POST'])
 def addForPwd():
-    form = PostForm()
+    form = PostFormPwd()
     if form.validate_on_submit():
-        body = form.body.data
-        title = form.title.data
+
+        pwd = form.pwd.data
+
+
+
     else:
-        return render_template('page.html', form=form)
+        return render_template('bs.html', form=form)
 
 
 @app.route('/post/<title>')
@@ -218,6 +221,11 @@ class PostForm(Form):
     title = StringField('title', validators=[DataRequired()])
     body = TextAreaField('body')
     sumbit = SubmitField('submit')
+    pwd = PasswordField('pwd')
+
+class PostFormPwd(Form):
+    sumbit = SubmitField('submit')
+    pwd = PasswordField('pwd')
 
 if __name__ == '__main__':
     app.run()
