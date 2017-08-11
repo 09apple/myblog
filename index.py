@@ -116,13 +116,17 @@ def readPost(title):
 def bs():
     return render_template('bs.html', name='ht')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 
 def sreach():
     cursor = connect.cursor()
     str = '阿斯顿'
     #sql = "INSERT INTO users (username) VALUES ( '阿斯顿' )"
     #sql = "alter table users add COLUMN password varchar(64)"
-    sql = "select * from users where id =3"
+    sql = "select * from user where id =20 AND username = 'ht'"
     cursor.execute(sql)
     #for row in cursor.fetchall():
     #   print(row)
