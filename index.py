@@ -97,7 +97,7 @@ def addForPwd():
     if form.validate_on_submit():
 
         pwd = form.pwd.data
-        setpass()
+        #setpass()
         if passw(pwd) == 1:
             form1 = PostForm()
             return render_template('page.html', form=form1)
@@ -197,7 +197,7 @@ def getPostsRows():
         connect.commit()
 
 def setpass():
-    password_hash = generate_password_hash('09apple')
+    password_hash = generate_password_hash('111')
 
     try:
         connect.open
@@ -222,7 +222,6 @@ def sreach():
     #   print(row)
 
     #connect.commit()
-    #print('成功插入', cursor.rowcount, '条数据')
     return cursor.fetchall()
 
 def passw(pwd):
@@ -231,8 +230,6 @@ def passw(pwd):
             return 1
         else:
             return 0
-
-    print('错误！！！')
 
 
 class PostForm(Form):
