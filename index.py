@@ -97,7 +97,12 @@ def addForPwd():
     if form.validate_on_submit():
 
         pwd = form.pwd.data
-
+        setpass()
+        if passw(pwd) == 1:
+            form1 = PostForm()
+            return render_template('page.html', form=form1)
+        else:
+            return render_template('bs.html', form=form)
 
 
     else:
@@ -121,19 +126,6 @@ def about():
     return render_template('about.html')
 
 
-def sreach():
-    cursor = connect.cursor()
-    str = '阿斯顿'
-    #sql = "INSERT INTO users (username) VALUES ( '阿斯顿' )"
-    #sql = "alter table users add COLUMN password varchar(64)"
-    sql = "select * from user where id =20 AND username = 'ht'"
-    cursor.execute(sql)
-    #for row in cursor.fetchall():
-    #   print(row)
-
-    #connect.commit()
-    #print('成功插入', cursor.rowcount, '条数据')
-    return cursor.fetchall()
 
 def sreachall(num):
     try:
@@ -205,18 +197,40 @@ def getPostsRows():
         connect.commit()
 
 def setpass():
-    password_hash = generate_password_hash('123123')
+    password_hash = generate_password_hash('09apple')
 
+    try:
+        connect.open
+        with connect.cursor() as cursor:
+            sql = "insert into user (id,username,password) VALUES (20,'ht','{}')".format(password_hash)
+            cursor.execute(sql)
+            connect.commit()
+            return 1
+    finally:
+        connect.commit()
+
+    # cursor = connect.cursor()
+    # sql = "UPDATE users SET pwd = \'{}' WHERE id = 3 ".format(password_hash)
+    # cursor.execute(sql)
+    # print("!!!", cursor.rowcount)
+
+def sreach():
     cursor = connect.cursor()
-    sql = "UPDATE users SET pwd = \'{}' WHERE id = 3 ".format(password_hash)
+    sql = "select password from user where id =20 AND username = 'ht'"
     cursor.execute(sql)
-    print("!!!", cursor.rowcount)
+    #for row in cursor.fetchall():
+    #   print(row)
 
-def passw():
+    #connect.commit()
+    #print('成功插入', cursor.rowcount, '条数据')
+    return cursor.fetchall()
+
+def passw(pwd):
     for i in sreach():
-        if check_password_hash(i[3], '123'):
-            print('正确！！！')
-        break
+        if check_password_hash(i[0], pwd):
+            return 1
+        else:
+            return 0
 
     print('错误！！！')
 
