@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ post[0].title }}</title>
+    <script type="text/javascript" src="showdown.min.js"></script>
     <style>
         pre{
             white-space:pre-wrap;
@@ -19,11 +20,21 @@
             <h2>{{ post[0].title }}</h2>
         </div>
         <hr>
-        <div style="word-wrap: break-word;white-space : normal  ">
+        <div id="tend" style="word-wrap: break-word;white-space : normal  ">
             <pre><body>{{ post[0].body }}</body></pre>
         </div>
 
 
     </div>
+<script type="text/javascript">
+    function compile(){
+        var text = document.getElementById("tend").value;
+        var converter = new showdown.Converter();
+        var html = converter.makeHtml(text);
+        document.getElementById("result").innerHTML = html;
+    }
+
+
+</script>
 </body>
 </html>
