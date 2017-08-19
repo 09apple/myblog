@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='bootstrap.min.css')}} " >
+    <script type="text/javascript" src="showdown.min.js"></script>
     <title>添加文章</title>
 
     <style>
@@ -21,6 +22,7 @@
 </head>
 <body>
 <script type="text/javascript">
+    var converter = new showdown.Converter();
 
     function upperCase(x)
     {

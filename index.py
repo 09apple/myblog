@@ -10,7 +10,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_pagedown import PageDown
 from wtforms import TextAreaField, SubmitField, StringField, PasswordField
 from wtforms.validators import DataRequired
-
+import markdown
 import datetime
 
 def create_app():
@@ -103,18 +103,15 @@ def addForPwd():
             return render_template('page.html', form=form1)
         else:
             return render_template('bs.html', form=form)
-
-
     else:
         return render_template('bs.html', form=form)
-
 
 @app.route('/post/<title>')
 def readPost(title):
 
     post = sreachPost(title)
     postList = []
-    postList.append({'title': post[0][2], 'body': post[0][3]})
+    postList.append({'title': post[0][2], 'body': markdown.markdown(post[0][3])})
     return render_template('post.html', post=postList)
 
 @app.route('/bs')
