@@ -84,6 +84,8 @@ def add():
         body = form.body.data
         title = form.title.data
 
+
+
         number = insertPost(createtime, body, 'ht', title)
 
         if int(number) > 0:
@@ -171,7 +173,8 @@ def insertPost(time, post, author, title):
         connect.open
         with connect.cursor() as cursor:
             sql = "INSERT INTO posts (author,createtime,body,title) VALUES\
-                  (\'{}\',\'{}\',\'{}\',\'{}\')".format(author, time, post, title)
+                  (\'{}\',\'{}\',\"{}\",\"{}\")".format(author, time, post, title)
+            print(sql)
             cursor.execute(sql)
             number = cursor.rowcount
             connect.commit()
