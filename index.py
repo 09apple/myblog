@@ -174,7 +174,6 @@ def insertPost(time, post, author, title):
         with connect.cursor() as cursor:
             sql = "INSERT INTO posts (author,createtime,body,title) VALUES\
                   (\'{}\',\'{}\',\"{}\",\"{}\")".format(author, time, post, title)
-            print(sql)
             cursor.execute(sql)
             number = cursor.rowcount
             connect.commit()
