@@ -44,10 +44,11 @@ def hello_world():
     return redirect('/hello/1')
 
 
-@app.route('/page')
+@app.route('/page2')
 def addpage():
-    form = PostForm(request.form)
-    return render_template('page.html', form=form)
+
+    print(markdown.markdown('as', ['codehilite']))
+    return render_template('demo.html')
 
 
 @app.route('/user/<name>')
@@ -117,8 +118,8 @@ def addForPwd():
 def readPost(title):
     post = sreachPost(title)
     postList = []
-    postList.append({'title': post[0][2], 'body': markdown.markdown(post[0][3], ['extra', 'codehilite'])})
-    print(markdown.markdown(post[0][3], ['codehilite']))
+    postList.append({'title': post[0][2], 'body': markdown.markdown(post[0][3], extensions=['codehilite'])})
+    print(markdown.markdown(post[0][3], extensions=['codehilite']))
     return render_template('post.html', post=postList)
 
 
