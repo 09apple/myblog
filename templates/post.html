@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='default.css')}}" >
     <title>{{ post[0].title }}</title>
     <style>
         pre{
@@ -20,7 +21,7 @@
         </div>
         <hr>
         <div id="tend" style="word-wrap: break-word;white-space : normal  ">
-            <pre>{{ post[0].body | safe}}</pre>
+            <pre>{{ post[0].body | safe }}</pre>
         </div>
 
     </div>

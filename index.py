@@ -1,9 +1,9 @@
-#-*-coding:utf-8-*-
+# -*-coding:utf-8-*-
 
 from flask import Flask, render_template, redirect
 from flask import request
 from flask_bootstrap import Bootstrap
-#from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 import pymysql.cursors
 from flask_wtf import Form
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -13,19 +13,20 @@ from wtforms.validators import DataRequired
 import markdown
 import datetime
 
+
 def create_app():
     app = Flask(__name__)
     return app
 
-app = create_app()
 
+app = create_app()
 
 bootstrap = Bootstrap(app)
 pagedown = PageDown()
 pagedown.init_app(app)
 app.config.from_object('config')
-#db = SQLAlchemy(app)
-#import models
+# db = SQLAlchemy(app)
+# import models
 
 connect = pymysql.connect(
     host='localhost',
@@ -42,25 +43,28 @@ def hello_world():
     user_agent = request.headers.get('User-Agent')
     return redirect('/hello/1')
 
+
 @app.route('/page')
 def addpage():
     form = PostForm(request.form)
     return render_template('page.html', form=form)
 
+
 @app.route('/user/<name>')
 def user(name):
     return '<h1>Hello,%s!</h1>' % name
 
+
 @app.route('/hello/<pageN>', methods=['GET', 'POST'])
 def hello(pageN):
-    #page = request.args.get('page', 1, type=int)
+    # page = request.args.get('page', 1, type=int)
     if (getPostsRows()[0][0]) % 6 > 0:
-        pageNum = (getPostsRows()[0][0])/6 + 1
+        pageNum = (getPostsRows()[0][0]) / 6 + 1
     else:
-        pageNum = (getPostsRows()[0][0])/6
+        pageNum = (getPostsRows()[0][0]) / 6
     if int(pageN) > int(pageNum) or int(pageN) <= 0:
         pageN = 1
-    posts = sreachall(((int(pageN)-1) * 6))
+    posts = sreachall(((int(pageN) - 1) * 6))
     titAll = sreachTit()
 
     listTit = []
@@ -75,6 +79,7 @@ def hello(pageN):
     return render_template('index.html', posts=alllist, pageN=pageN, \
                            int=int, pageNum=pageNum, listTit=listTit)
 
+
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     form = PostForm()
@@ -84,8 +89,6 @@ def add():
         body = form.body.data
         title = form.title.data
 
-
-
         number = insertPost(createtime, body, 'ht', title)
 
         if int(number) > 0:
@@ -93,13 +96,14 @@ def add():
     else:
         return render_template('bs.html', form=form)
 
-@app.route('/getpwd',methods=['GET', 'POST'])
+
+@app.route('/getpwd', methods=['GET', 'POST'])
 def addForPwd():
     form = PostFormPwd()
     if form.validate_on_submit():
 
         pwd = form.pwd.data
-        #setpass()
+        # setpass()
         if passw(pwd) == 1:
             form1 = PostForm()
             return render_template('page.html', form=form1)
@@ -108,22 +112,24 @@ def addForPwd():
     else:
         return render_template('bs.html', form=form)
 
+
 @app.route('/post/<title>')
 def readPost(title):
-
     post = sreachPost(title)
     postList = []
-    postList.append({'title': post[0][2], 'body': markdown.markdown(post[0][3])})
+    postList.append({'title': post[0][2], 'body': markdown.markdown(post[0][3], ['extra', 'codehilite'])})
+    print(markdown.markdown(post[0][3], ['codehilite']))
     return render_template('post.html', post=postList)
+
 
 @app.route('/bs')
 def bs():
     return render_template('bs.html', name='ht')
 
+
 @app.route('/about')
 def about():
     return render_template('about.html')
-
 
 
 def sreachall(num):
@@ -139,6 +145,7 @@ def sreachall(num):
 
     finally:
         connect.commit()
+
 
 def sreachPost(title):
     try:
@@ -182,6 +189,7 @@ def insertPost(time, post, author, title):
     finally:
         connect.commit()
 
+
 def getPostsRows():
     try:
         connect.open
@@ -194,6 +202,7 @@ def getPostsRows():
 
     finally:
         connect.commit()
+
 
 def setpass():
     password_hash = generate_password_hash('111')
@@ -208,20 +217,22 @@ def setpass():
     finally:
         connect.commit()
 
-    # cursor = connect.cursor()
-    # sql = "UPDATE users SET pwd = \'{}' WHERE id = 3 ".format(password_hash)
-    # cursor.execute(sql)
-    # print("!!!", cursor.rowcount)
+        # cursor = connect.cursor()
+        # sql = "UPDATE users SET pwd = \'{}' WHERE id = 3 ".format(password_hash)
+        # cursor.execute(sql)
+        # print("!!!", cursor.rowcount)
+
 
 def sreach():
     cursor = connect.cursor()
     sql = "select password from user where id =20 AND username = 'ht'"
     cursor.execute(sql)
-    #for row in cursor.fetchall():
+    # for row in cursor.fetchall():
     #   print(row)
 
-    #connect.commit()
+    # connect.commit()
     return cursor.fetchall()
+
 
 def passw(pwd):
     for i in sreach():
@@ -237,9 +248,11 @@ class PostForm(Form):
     sumbit = SubmitField('submit')
     pwd = PasswordField('pwd')
 
+
 class PostFormPwd(Form):
     sumbit = SubmitField('submit')
     pwd = PasswordField('pwd')
+
 
 if __name__ == '__main__':
     app.run()
