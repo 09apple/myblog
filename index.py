@@ -119,7 +119,6 @@ def readPost(title):
     post = sreachPost(title)
     postList = []
     postList.append({'title': post[0][2], 'body': markdown.markdown(post[0][3], extensions=['codehilite'])})
-    print(markdown.markdown(post[0][3], extensions=['codehilite']))
     return render_template('post.html', post=postList)
 
 
@@ -180,9 +179,10 @@ def insertPost(time, post, author, title):
     try:
         connect.open
         with connect.cursor() as cursor:
+            args = (author, time, post, title)
             sql = "INSERT INTO posts (author,createtime,body,title) VALUES\
-                  (\'{}\',\'{}\',\"{}\",\"{}\")".format(author, time, post, title)
-            cursor.execute(sql)
+                  (%s, %s, %s, %s)"
+            cursor.execute(sql, args)
             number = cursor.rowcount
             connect.commit()
             return number
