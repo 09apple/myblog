@@ -5,7 +5,7 @@ from flask import request
 from flask_bootstrap import Bootstrap
 # from flask_sqlalchemy import SQLAlchemy
 import pymysql.cursors
-from flask_wtf import Form
+from flask_wtf import FlaskForm as From
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_pagedown import PageDown
 from wtforms import TextAreaField, SubmitField, StringField, PasswordField
@@ -32,8 +32,8 @@ connect = pymysql.connect(
     host='localhost',
     port=3306,
     user='root',
-    passwd='09apple',
-    db='blog',
+    passwd='root',
+    db='bolg',
     charset='utf8'
 )
 
@@ -83,6 +83,7 @@ def hello(pageN):
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
+
     form = PostForm()
     if form.validate_on_submit():
         createtime = (datetime.datetime.now()).strftime("%Y-%m-%d %H:%M:%S")
@@ -243,14 +244,14 @@ def passw(pwd):
             return 0
 
 
-class PostForm(Form):
+class PostForm(From):
     title = StringField('title', validators=[DataRequired()])
     body = TextAreaField('body')
     sumbit = SubmitField('submit')
     pwd = PasswordField('pwd')
 
 
-class PostFormPwd(Form):
+class PostFormPwd(From):
     sumbit = SubmitField('submit')
     pwd = PasswordField('pwd')
 
