@@ -1,7 +1,6 @@
 # -*-coding:utf-8-*-
 
-from flask import Flask, render_template, redirect
-from flask import request
+from flask import Flask, render_template, redirect, session, url_for, escape, request
 from flask_bootstrap import Bootstrap
 # from flask_sqlalchemy import SQLAlchemy
 import pymysql.cursors
@@ -96,7 +95,14 @@ def add():
         if int(number) > 0:
             return redirect('/hello/1')
     else:
-        return render_template('bs.html', form=form)
+        if 'pwd' in session:
+            print(1)
+            return render_template('page.html', form=form)
+        else:
+            print(2)
+            return render_template('bs.html', form=form)
+
+
 
 
 @app.route('/getpwd', methods=['GET', 'POST'])
@@ -107,6 +113,9 @@ def addForPwd():
         pwd = form.pwd.data
         # setpass()
         if passw(pwd) == 1:
+            if request.method == 'POST':
+                session['pwd'] = request.form['pwd']
+                print(3)
             form1 = PostForm()
             return render_template('page.html', form=form1)
         else:

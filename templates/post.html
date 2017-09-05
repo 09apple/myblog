@@ -5,18 +5,13 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='code.css')}}" >
     <title>{{ post[0].title }}</title>
     <style>
-        pre{
-            white-space:pre-wrap;
-            white-space:-moz-pre-wrap;
-            white-space:-o-pre-wrap;
-            word-wrap:break-word;
-        }
+
 
     </style>
 </head>
 <body style="">
     <div style="padding: 2% 8% 5% 8%; border: 1px solid LightGrey;font-size: 16px">
-        <div>
+        <div style="padding-top: 1px; padding-bottom: 1px">
             <h2>{{ post[0].title }}</h2>
         </div>
         <hr>
