@@ -11,6 +11,7 @@ from wtforms import TextAreaField, SubmitField, StringField, PasswordField
 from wtforms.validators import DataRequired
 import markdown
 import datetime
+from datetime import timedelta
 
 
 def create_app():
@@ -31,8 +32,8 @@ connect = pymysql.connect(
     host='localhost',
     port=3306,
     user='root',
-    passwd='09apple',
-    db='blog',
+    passwd='root',
+    db='bolg',
     charset='utf8'
 )
 
@@ -96,10 +97,8 @@ def add():
             return redirect('/hello/1')
     else:
         if 'pwd' in session:
-            print(1)
             return render_template('page.html', form=form)
         else:
-            print(2)
             return render_template('bs.html', form=form)
 
 
@@ -114,8 +113,9 @@ def addForPwd():
         # setpass()
         if passw(pwd) == 1:
             if request.method == 'POST':
+                session.permanent = True
+                app.permanent_session_lifetime = timedelta(minutes=30)
                 session['pwd'] = request.form['pwd']
-                print(3)
             form1 = PostForm()
             return render_template('page.html', form=form1)
         else:
