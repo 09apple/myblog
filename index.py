@@ -208,7 +208,7 @@ def getPostsRows():
             sql = "SELECT COUNT(*) FROM posts"
             cursor.execute(sql)
             number = cursor.fetchall()
-            connect.commit()
+
             return number
 
     finally:
