@@ -202,7 +202,7 @@ def insertPost(time, post, author, title):
 
 
 def getPostsRows():
-    try:
+
         connect.open
         with connect.cursor() as cursor:
             sql = "SELECT COUNT(*) FROM posts"
@@ -211,8 +211,7 @@ def getPostsRows():
 
             return number
 
-    finally:
-        connect.commit()
+
 
 
 def setpass():
