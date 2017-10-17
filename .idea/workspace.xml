@@ -25,17 +25,17 @@
       <file leaf-file-name="index.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="236" column="0" lean-forward="true" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
+            <state relative-caret-position="238">
+              <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
               <folding>
                 <element signature="e#22#107#0" expanded="true" />
-                <marker date="1508247097723" expanded="true" signature="3826:3874" ph="SELECT * fro... posts" />
-                <marker date="1508247097723" expanded="true" signature="4152:4190" ph="SELECT * FRO... posts" />
-                <marker date="1508247097723" expanded="true" signature="4460:4518" ph="SELECT title... posts" />
-                <marker date="1508247097723" expanded="true" signature="4848:4939" ph="INSERT INTO posts... " />
-                <marker date="1508247097723" expanded="true" signature="5203:5229" ph="SELECT COUNT... posts" />
-                <marker date="1508247097723" expanded="true" signature="5495:5556" ph="insert into user... " />
-                <marker date="1508247097723" expanded="true" signature="5933:5991" ph="select passw... user" />
+                <marker date="1508247229624" expanded="true" signature="3829:3877" ph="SELECT * fro... posts" />
+                <marker date="1508247229624" expanded="true" signature="4155:4193" ph="SELECT * FRO... posts" />
+                <marker date="1508247229624" expanded="true" signature="4463:4521" ph="SELECT title... posts" />
+                <marker date="1508247229624" expanded="true" signature="4851:4942" ph="INSERT INTO posts... " />
+                <marker date="1508247229624" expanded="true" signature="5206:5232" ph="SELECT COUNT... posts" />
+                <marker date="1508247229624" expanded="true" signature="5498:5559" ph="insert into user... " />
+                <marker date="1508247229624" expanded="true" signature="5936:5994" ph="select passw... user" />
               </folding>
             </state>
           </provider>
@@ -686,7 +686,14 @@
       <option name="project" value="LOCAL" />
       <updated>1508205689230</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="10.17sql服务终端bug修复">
+      <created>1508247141876</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1508247141876</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -785,13 +792,13 @@
           <caret line="41" column="26" lean-forward="false" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
           <folding>
             <element signature="e#22#107#0" expanded="true" />
-            <marker date="1508247097723" expanded="true" signature="3826:3874" ph="SELECT * fro... posts" />
-            <marker date="1508247097723" expanded="true" signature="4152:4190" ph="SELECT * FRO... posts" />
-            <marker date="1508247097723" expanded="true" signature="4460:4518" ph="SELECT title... posts" />
-            <marker date="1508247097723" expanded="true" signature="4848:4939" ph="INSERT INTO posts... " />
-            <marker date="1508247097723" expanded="true" signature="5203:5229" ph="SELECT COUNT... posts" />
-            <marker date="1508247097723" expanded="true" signature="5495:5556" ph="insert into user... " />
-            <marker date="1508247097723" expanded="true" signature="5933:5991" ph="select passw... user" />
+            <marker date="1508247229624" expanded="true" signature="3829:3877" ph="SELECT * fro... posts" />
+            <marker date="1508247229624" expanded="true" signature="4155:4193" ph="SELECT * FRO... posts" />
+            <marker date="1508247229624" expanded="true" signature="4463:4521" ph="SELECT title... posts" />
+            <marker date="1508247229624" expanded="true" signature="4851:4942" ph="INSERT INTO posts... " />
+            <marker date="1508247229624" expanded="true" signature="5206:5232" ph="SELECT COUNT... posts" />
+            <marker date="1508247229624" expanded="true" signature="5498:5559" ph="insert into user... " />
+            <marker date="1508247229624" expanded="true" signature="5936:5994" ph="select passw... user" />
           </folding>
         </state>
       </provider>
@@ -839,13 +846,13 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#22#107#0" expanded="true" />
-            <marker date="1508247097723" expanded="true" signature="3826:3874" ph="SELECT * fro... posts" />
-            <marker date="1508247097723" expanded="true" signature="4152:4190" ph="SELECT * FRO... posts" />
-            <marker date="1508247097723" expanded="true" signature="4460:4518" ph="SELECT title... posts" />
-            <marker date="1508247097723" expanded="true" signature="4848:4939" ph="INSERT INTO posts... " />
-            <marker date="1508247097723" expanded="true" signature="5203:5229" ph="SELECT COUNT... posts" />
-            <marker date="1508247097723" expanded="true" signature="5495:5556" ph="insert into user... " />
-            <marker date="1508247097723" expanded="true" signature="5933:5991" ph="select passw... user" />
+            <marker date="1508247229624" expanded="true" signature="3829:3877" ph="SELECT * fro... posts" />
+            <marker date="1508247229624" expanded="true" signature="4155:4193" ph="SELECT * FRO... posts" />
+            <marker date="1508247229624" expanded="true" signature="4463:4521" ph="SELECT title... posts" />
+            <marker date="1508247229624" expanded="true" signature="4851:4942" ph="INSERT INTO posts... " />
+            <marker date="1508247229624" expanded="true" signature="5206:5232" ph="SELECT COUNT... posts" />
+            <marker date="1508247229624" expanded="true" signature="5498:5559" ph="insert into user... " />
+            <marker date="1508247229624" expanded="true" signature="5936:5994" ph="select passw... user" />
           </folding>
         </state>
       </provider>
@@ -885,13 +892,13 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#22#107#0" expanded="true" />
-            <marker date="1508247097723" expanded="true" signature="3826:3874" ph="SELECT * fro... posts" />
-            <marker date="1508247097723" expanded="true" signature="4152:4190" ph="SELECT * FRO... posts" />
-            <marker date="1508247097723" expanded="true" signature="4460:4518" ph="SELECT title... posts" />
-            <marker date="1508247097723" expanded="true" signature="4848:4939" ph="INSERT INTO posts... " />
-            <marker date="1508247097723" expanded="true" signature="5203:5229" ph="SELECT COUNT... posts" />
-            <marker date="1508247097723" expanded="true" signature="5495:5556" ph="insert into user... " />
-            <marker date="1508247097723" expanded="true" signature="5933:5991" ph="select passw... user" />
+            <marker date="1508247229624" expanded="true" signature="3829:3877" ph="SELECT * fro... posts" />
+            <marker date="1508247229624" expanded="true" signature="4155:4193" ph="SELECT * FRO... posts" />
+            <marker date="1508247229624" expanded="true" signature="4463:4521" ph="SELECT title... posts" />
+            <marker date="1508247229624" expanded="true" signature="4851:4942" ph="INSERT INTO posts... " />
+            <marker date="1508247229624" expanded="true" signature="5206:5232" ph="SELECT COUNT... posts" />
+            <marker date="1508247229624" expanded="true" signature="5498:5559" ph="insert into user... " />
+            <marker date="1508247229624" expanded="true" signature="5936:5994" ph="select passw... user" />
           </folding>
         </state>
       </provider>
@@ -931,13 +938,13 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#22#107#0" expanded="true" />
-            <marker date="1508247097723" expanded="true" signature="3826:3874" ph="SELECT * fro... posts" />
-            <marker date="1508247097723" expanded="true" signature="4152:4190" ph="SELECT * FRO... posts" />
-            <marker date="1508247097723" expanded="true" signature="4460:4518" ph="SELECT title... posts" />
-            <marker date="1508247097723" expanded="true" signature="4848:4939" ph="INSERT INTO posts... " />
-            <marker date="1508247097723" expanded="true" signature="5203:5229" ph="SELECT COUNT... posts" />
-            <marker date="1508247097723" expanded="true" signature="5495:5556" ph="insert into user... " />
-            <marker date="1508247097723" expanded="true" signature="5933:5991" ph="select passw... user" />
+            <marker date="1508247229624" expanded="true" signature="3829:3877" ph="SELECT * fro... posts" />
+            <marker date="1508247229624" expanded="true" signature="4155:4193" ph="SELECT * FRO... posts" />
+            <marker date="1508247229624" expanded="true" signature="4463:4521" ph="SELECT title... posts" />
+            <marker date="1508247229624" expanded="true" signature="4851:4942" ph="INSERT INTO posts... " />
+            <marker date="1508247229624" expanded="true" signature="5206:5232" ph="SELECT COUNT... posts" />
+            <marker date="1508247229624" expanded="true" signature="5498:5559" ph="insert into user... " />
+            <marker date="1508247229624" expanded="true" signature="5936:5994" ph="select passw... user" />
           </folding>
         </state>
       </provider>
@@ -977,13 +984,13 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#22#107#0" expanded="true" />
-            <marker date="1508247097723" expanded="true" signature="3826:3874" ph="SELECT * fro... posts" />
-            <marker date="1508247097723" expanded="true" signature="4152:4190" ph="SELECT * FRO... posts" />
-            <marker date="1508247097723" expanded="true" signature="4460:4518" ph="SELECT title... posts" />
-            <marker date="1508247097723" expanded="true" signature="4848:4939" ph="INSERT INTO posts... " />
-            <marker date="1508247097723" expanded="true" signature="5203:5229" ph="SELECT COUNT... posts" />
-            <marker date="1508247097723" expanded="true" signature="5495:5556" ph="insert into user... " />
-            <marker date="1508247097723" expanded="true" signature="5933:5991" ph="select passw... user" />
+            <marker date="1508247229624" expanded="true" signature="3829:3877" ph="SELECT * fro... posts" />
+            <marker date="1508247229624" expanded="true" signature="4155:4193" ph="SELECT * FRO... posts" />
+            <marker date="1508247229624" expanded="true" signature="4463:4521" ph="SELECT title... posts" />
+            <marker date="1508247229624" expanded="true" signature="4851:4942" ph="INSERT INTO posts... " />
+            <marker date="1508247229624" expanded="true" signature="5206:5232" ph="SELECT COUNT... posts" />
+            <marker date="1508247229624" expanded="true" signature="5498:5559" ph="insert into user... " />
+            <marker date="1508247229624" expanded="true" signature="5936:5994" ph="select passw... user" />
           </folding>
         </state>
       </provider>
@@ -1173,17 +1180,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="236" column="0" lean-forward="true" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
+        <state relative-caret-position="238">
+          <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
           <folding>
             <element signature="e#22#107#0" expanded="true" />
-            <marker date="1508247097723" expanded="true" signature="3826:3874" ph="SELECT * fro... posts" />
-            <marker date="1508247097723" expanded="true" signature="4152:4190" ph="SELECT * FRO... posts" />
-            <marker date="1508247097723" expanded="true" signature="4460:4518" ph="SELECT title... posts" />
-            <marker date="1508247097723" expanded="true" signature="4848:4939" ph="INSERT INTO posts... " />
-            <marker date="1508247097723" expanded="true" signature="5203:5229" ph="SELECT COUNT... posts" />
-            <marker date="1508247097723" expanded="true" signature="5495:5556" ph="insert into user... " />
-            <marker date="1508247097723" expanded="true" signature="5933:5991" ph="select passw... user" />
+            <marker date="1508247229624" expanded="true" signature="3829:3877" ph="SELECT * fro... posts" />
+            <marker date="1508247229624" expanded="true" signature="4155:4193" ph="SELECT * FRO... posts" />
+            <marker date="1508247229624" expanded="true" signature="4463:4521" ph="SELECT title... posts" />
+            <marker date="1508247229624" expanded="true" signature="4851:4942" ph="INSERT INTO posts... " />
+            <marker date="1508247229624" expanded="true" signature="5206:5232" ph="SELECT COUNT... posts" />
+            <marker date="1508247229624" expanded="true" signature="5498:5559" ph="insert into user... " />
+            <marker date="1508247229624" expanded="true" signature="5936:5994" ph="select passw... user" />
           </folding>
         </state>
       </provider>
