@@ -143,7 +143,7 @@ def about():
 
 
 def sreachall(num):
-    try:
+
         connect.open
 
         with connect.cursor() as cursor:
@@ -153,12 +153,10 @@ def sreachall(num):
             connect.commit()
             return result
 
-    finally:
-        connect.commit()
+
 
 
 def sreachPost(title):
-    try:
         connect.open
 
         with connect.cursor() as cursor:
@@ -167,12 +165,9 @@ def sreachPost(title):
             result = cursor.fetchall()
             connect.commit()
             return result
-    finally:
-        connect.commit()
 
 
 def sreachTit():
-    try:
         connect.open
 
         with connect.cursor() as cursor:
@@ -181,12 +176,10 @@ def sreachTit():
             result = cursor.fetchall()
             connect.commit()
             return result
-    finally:
-        connect.commit()
 
 
 def insertPost(time, post, author, title):
-    try:
+
         connect.open
         with connect.cursor() as cursor:
             args = (author, time, post, title)
@@ -196,9 +189,6 @@ def insertPost(time, post, author, title):
             number = cursor.rowcount
             connect.commit()
             return number
-
-    finally:
-        connect.commit()
 
 
 def getPostsRows():
@@ -217,15 +207,14 @@ def getPostsRows():
 def setpass():
     password_hash = generate_password_hash('111')
 
-    try:
-        connect.open
-        with connect.cursor() as cursor:
-            sql = "insert into user (id,username,password) VALUES (20,'ht','{}')".format(password_hash)
-            cursor.execute(sql)
-            connect.commit()
-            return 1
-    finally:
+
+    connect.open
+    with connect.cursor() as cursor:
+        sql = "insert into user (id,username,password) VALUES (20,'ht','{}')".format(password_hash)
+        cursor.execute(sql)
         connect.commit()
+        return 1
+
 
         # cursor = connect.cursor()
         # sql = "UPDATE users SET pwd = \'{}' WHERE id = 3 ".format(password_hash)
