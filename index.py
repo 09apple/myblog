@@ -32,8 +32,8 @@ connect = pymysql.connect(
     host='localhost',
     port=3306,
     user='root',
-    passwd='09apple',
-    db='blog',
+    passwd='root',
+    db='bolg',
     charset='utf8'
 )
 
@@ -144,12 +144,14 @@ def about():
 
 def sreachall(num):
 
+
         connect.open
 
         with connect.cursor() as cursor:
             sql = "SELECT * from posts order by ID DESC limit {}, 6  ".format(num)
             cursor.execute(sql)
             result = cursor.fetchall()
+            cursor.close()
             connect.commit()
             return result
 
@@ -163,6 +165,7 @@ def sreachPost(title):
             sql = "SELECT * FROM posts WHERE title = '{}'".format(title)
             cursor.execute(sql)
             result = cursor.fetchall()
+            cursor.close()
             connect.commit()
             return result
 
@@ -174,6 +177,7 @@ def sreachTit():
             sql = "SELECT title FROM posts  ORDER BY createtime DESC limit 10 "
             cursor.execute(sql)
             result = cursor.fetchall()
+            cursor.close()
             connect.commit()
             return result
 
@@ -187,7 +191,9 @@ def insertPost(time, post, author, title):
                   (%s, %s, %s, %s)"
             cursor.execute(sql, args)
             number = cursor.rowcount
+            cursor.close()
             connect.commit()
+
             return number
 
 
@@ -198,7 +204,7 @@ def getPostsRows():
             sql = "SELECT COUNT(*) FROM posts"
             cursor.execute(sql)
             number = cursor.fetchall()
-
+            cursor.close()
             return number
 
 
@@ -212,6 +218,7 @@ def setpass():
     with connect.cursor() as cursor:
         sql = "insert into user (id,username,password) VALUES (20,'ht','{}')".format(password_hash)
         cursor.execute(sql)
+        cursor.close()
         connect.commit()
         return 1
 
@@ -223,14 +230,17 @@ def setpass():
 
 
 def sreach():
-    cursor = connect.cursor()
-    sql = "select password from user where id =20 AND username = 'ht'"
-    cursor.execute(sql)
-    # for row in cursor.fetchall():
-    #   print(row)
+    with connect.cursor() as cursor:
 
-    # connect.commit()
-    return cursor.fetchall()
+        sql = "select password from user where id =20 AND username = 'ht'"
+        cursor.execute(sql)
+
+        # for row in cursor.fetchall():
+        #   print(row)
+        # connect.commit()
+        pwas = cursor.fetchall()
+        cursor.close()
+        return pwas
 
 
 def passw(pwd):
