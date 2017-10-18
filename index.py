@@ -28,14 +28,18 @@ app.config.from_object('config')
 # db = SQLAlchemy(app)
 # import models
 
-connect = pymysql.connect(
-    host='localhost',
-    port=3306,
-    user='root',
-    passwd='09apple',
-    db='blog',
-    charset='utf8'
-)
+import contextlib
+
+@contextlib.contextmanager
+def mysql(host='localhost', port=3306, user='root', passwd='09apple', db='blog', charset='utf8'):
+    conn = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=db, charset=charset)
+    cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+    try:
+        yield cursor
+    finally:
+        conn.commit()
+        cursor.close()
+        conn.close()
 
 
 @app.route('/')
@@ -59,10 +63,11 @@ def user(name):
 @app.route('/hello/<pageN>', methods=['GET', 'POST'])
 def hello(pageN):
     # page = request.args.get('page', 1, type=int)
-    if (getPostsRows()[0][0]) % 6 > 0:
-        pageNum = (getPostsRows()[0][0]) / 6 + 1
+    pageNumall = getPostsRows()[0]['number']
+    if pageNumall % 6 > 0:
+        pageNum = pageNumall / 6 + 1
     else:
-        pageNum = (getPostsRows()[0][0]) / 6
+        pageNum = pageNumall / 6
     if int(pageN) > int(pageNum) or int(pageN) <= 0:
         pageN = 1
     posts = sreachall(((int(pageN) - 1) * 6))
@@ -72,10 +77,10 @@ def hello(pageN):
     alllist = []
     # 0:ID , 1:time ,2:title 3:body ,4:author
     for post in posts:
-        alllist.append({'author': {'name': post[4]}, 'body': post[3], \
-                        'title': post[2], 'time': post[1].strftime("%Y-%m-%d")})
+        alllist.append({'author': {'name': post['author']}, 'body': post['body'], \
+                        'title': post['title'], 'time': post['createtime'].strftime("%Y-%m-%d")})
     for tit in titAll:
-        listTit.append({'title': tit[0]})
+        listTit.append({'title': tit['title']})
 
     return render_template('index.html', posts=alllist, pageN=pageN, \
                            int=int, pageNum=pageNum, listTit=listTit)
@@ -128,7 +133,7 @@ def addForPwd():
 def readPost(title):
     post = sreachPost(title)
     postList = []
-    postList.append({'title': post[0][2], 'body': markdown.markdown(post[0][3], extensions=['codehilite'])})
+    postList.append({'title': post[0]['title'], 'body': markdown.markdown(post[0]['body'], extensions=['codehilite'])})
     return render_template('post.html', post=postList)
 
 
@@ -145,63 +150,54 @@ def about():
 def sreachall(num):
 
 
-        connect.open
 
-        with connect.cursor() as cursor:
+        with mysql() as cursor:
             sql = "SELECT * from posts order by ID DESC limit {}, 6  ".format(num)
             cursor.execute(sql)
             result = cursor.fetchall()
             cursor.close()
-            connect.commit()
             return result
 
 
 
 
 def sreachPost(title):
-        connect.open
 
-        with connect.cursor() as cursor:
+        with mysql() as cursor:
             sql = "SELECT * FROM posts WHERE title = '{}'".format(title)
             cursor.execute(sql)
             result = cursor.fetchall()
             cursor.close()
-            connect.commit()
             return result
 
 
 def sreachTit():
-        connect.open
 
-        with connect.cursor() as cursor:
+        with mysql() as cursor:
             sql = "SELECT title FROM posts  ORDER BY createtime DESC limit 10 "
             cursor.execute(sql)
             result = cursor.fetchall()
             cursor.close()
-            connect.commit()
             return result
 
 
 def insertPost(time, post, author, title):
 
-        connect.open
-        with connect.cursor() as cursor:
+        with mysql() as cursor:
             args = (author, time, post, title)
             sql = "INSERT INTO posts (author,createtime,body,title) VALUES\
                   (%s, %s, %s, %s)"
             cursor.execute(sql, args)
             number = cursor.rowcount
             cursor.close()
-            connect.commit()
 
             return number
 
 
 def getPostsRows():
 
-        connect.open
-        with connect.cursor() as cursor:
-            sql = "SELECT COUNT(*) FROM posts"
+        with mysql() as cursor:
+            sql = "SELECT COUNT(*) as number FROM posts"
             cursor.execute(sql)
             number = cursor.fetchall()
             cursor.close()
@@ -213,13 +209,10 @@ def getPostsRows():
 def setpass():
     password_hash = generate_password_hash('111')
 
-
-    connect.open
-    with connect.cursor() as cursor:
+    with mysql() as cursor:
         sql = "insert into user (id,username,password) VALUES (20,'ht','{}')".format(password_hash)
         cursor.execute(sql)
         cursor.close()
-        connect.commit()
         return 1
 
 
@@ -230,7 +223,7 @@ def setpass():
 
 
 def sreach():
-    with connect.cursor() as cursor:
+    with mysql() as cursor:
 
         sql = "select password from user where id =20 AND username = 'ht'"
         cursor.execute(sql)
