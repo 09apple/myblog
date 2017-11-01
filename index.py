@@ -237,11 +237,12 @@ def sreach():
 
 
 def passw(pwd):
-    for i in sreach():
-        if check_password_hash(i[0], pwd):
-            return 1
-        else:
-            return 0
+    pwdL = sreach()
+    pwd_byte = generate_password_hash(pwdL[0]['password'])
+
+    if check_password_hash(pwdL[0]['password'], pwd):
+        return 1
+
 
 
 class PostForm(From):
